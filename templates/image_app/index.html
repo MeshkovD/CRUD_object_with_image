@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="POST" action="add_image/">
+        {% csrf_token %}
+        <p>
+            <label>Введите название</label><br>
+            <input type="text" name="name">
+        </p>
+
+        <input type="submit" value="Сохранить">
+    </form>
+
+    {% if images.count > 0 %}
+    <h2>Список картинок</h2>
+    <table>
+        <tr><th>Id</th><th>Название</th><th>Изображение</th></tr>
+        {% for image in images %}
+        <tr><td>{{ image.id }}</td><td>{{ image.name }}</td><td> <img src="{{ image.image }}"></td></tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+</body>
+</html>
