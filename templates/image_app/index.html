@@ -18,9 +18,25 @@
     {% if images.count > 0 %}
     <h2>Список картинок</h2>
     <table>
-        <tr><th>Id</th><th>Название</th><th>Изображение</th></tr>
+        <tr>
+            <th>Id</th>
+            <th>Название</th>
+            <th>Изображение</th>
+        </tr>
         {% for image in images %}
-        <tr><td>{{ image.id }}</td><td>{{ image.name }}</td><td> <img src="{{ image.image }}"></td></tr>
+        <tr>
+            <td>{{ image.id }}</td>
+            <td>{{ image.name }}</td>
+            <td>
+
+            {% if image.image %}
+                <img src="{{ image.image.url }} " alt=" {{ image.name }} " width="200">
+            {% else %}
+                <p> изображение не загружено пользователем </p>
+            {% endif %}
+
+            </td>
+        </tr>
         {% endfor %}
     </table>
     {% endif %}
