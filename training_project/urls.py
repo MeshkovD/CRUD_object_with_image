@@ -21,7 +21,9 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('image_gallery/', include('image_app.urls'),name='image_gallery'),
+
+    path('photo_gallery/', include('image_app.urls')),
+    # path('image_gallery/', include('image_app.urls'),name='image_gallery'),
     path('admin/', admin.site.urls),
 ]
 

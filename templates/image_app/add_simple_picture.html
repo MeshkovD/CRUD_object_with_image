@@ -1,0 +1,32 @@
+
+
+Simple Picture
+
+
+ADD PICTURE
+
+
+
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit"> Save </button>
+
+</form>
+
+<div>
+    <table>
+        <tr>
+            <td>id</td>
+            <td>name</td>
+            <td>picture</td>
+        </tr>
+        <tr>
+            <td>id</td>
+            <td>name</td>
+            <td>picture</td>
+        </tr>
+    </table>
+</div>

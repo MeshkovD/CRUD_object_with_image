@@ -11,11 +11,24 @@
             <label>Введите название</label><br>
             <input type="text" name="name">
         </p>
-
+        <p>
+            <label>Загрузить картинку</label><br>
+            <input type="file" name="image">
+        </p>
         <input type="submit" value="Сохранить">
     </form>
 
-    {% if images.count > 0 %}
+
+    <form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit"> Save </button>
+
+    </form>
+
+    {% if pictures.count > 0 %}
     <h2>Список картинок</h2>
     <table>
         <tr>
@@ -23,14 +36,14 @@
             <th>Название</th>
             <th>Изображение</th>
         </tr>
-        {% for image in images %}
+        {% for picture in pictures %}
         <tr>
-            <td>{{ image.id }}</td>
-            <td>{{ image.name }}</td>
+            <td>{{ picture.id }}</td>
+            <td>{{ picture.title }}</td>
             <td>
 
-            {% if image.image %}
-                <img src="{{ image.image.url }} " alt=" {{ image.name }} " width="200">
+            {% if picture.photo %}
+                <img src="{{ picture.photo.url }} " alt=" {{ picture.title }} " width="200">
             {% else %}
                 <p> изображение не загружено пользователем </p>
             {% endif %}
@@ -39,6 +52,8 @@
         </tr>
         {% endfor %}
     </table>
+    {% else %}
+        <p> </p>
     {% endif %}
 
 </body>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit"> Save </button>
+
+</form>
+
+ <div>
+    {% if photos.count > 0 %}
+        <h2>Список картинок</h2>
+        <table>
+            <tr>
+                <td>id</td>
+                <td>Название</td>
+                <td>Картинка</td>
+            </tr>
+
+
+            {% for photo in photos %}
+             <tr>
+                <td>{{ photo.id }}</td>
+                <td>{{ photo.title }}</td>
+                <td>
+                    {% if photo.photo %}
+                        <img src="{{ photo.photo.url }}" alt="Проблема с загрузкой изображения из базы данных" width="200">
+                    {%else%}
+                        <p> Изображение не загружено пользователем.</p>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+
+    {% else %}
+        <h2>Не загружено ни одного изображения. <br> Загрузите первое! </h2>
+    {% endif %}
+    </div>
+
+</body>
+</html>
