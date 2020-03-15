@@ -3,6 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style type="text/css">
+        .block1 {
+            margin: 20px;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -16,32 +26,40 @@
 
 </form>
 
- <div>
+ <div class="">
     {% if photos.count > 0 %}
         <h2>Список картинок</h2>
-        <table>
-            <tr>
-                <td>id</td>
-                <td>Название</td>
-                <td>Картинка</td>
-            </tr>
-
 
             {% for photo in photos %}
-             <tr>
-                <td>{{ photo.id }}</td>
-                <td>{{ photo.title }}</td>
-                <td>
-                    {% if photo.photo %}
-                        <img src="{{ photo.photo.url }}" alt="Проблема с загрузкой изображения из базы данных" width="200">
-                    {%else%}
-                        <p> Изображение не загружено пользователем.</p>
-                    {% endif %}
-                </td>
-            </tr>
+            <div class="block1">
+                <table border="1">
+                     <tr>
+                         <td><a href="{% url 'picture_page' id=photo.id %}">{{ photo.title }}</a></td>
+                        <td rowspan="2">
+                            <a href="#">
+                            {% if photo.photo %}
+                                <a href="{% url 'picture_page' id=photo.id %}">
+                                    <img src="{{ photo.photo.url }}" alt="Проблема с загрузкой изображения из базы данных" width="200">
+                                </a>
+                            {%else%}
+                                <p> Изображение не загружено пользователем.</p>
+                            {% endif %}
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <p>Редактировать</p>
+                            <p><a href="{% url 'picture_delete' id=photo.id %}">Удалить</a></p>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
             {% endfor %}
 
-        </table>
+
 
     {% else %}
         <h2>Не загружено ни одного изображения. <br> Загрузите первое! </h2>
