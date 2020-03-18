@@ -36,3 +36,20 @@ def picture_delete(request, id):
         # return render(request, "image_app/photo_gallery.html", {"photos": photos, "form": form})
     except SimpleAddPicture.DoesNotExist:
         return HttpResponseNotFound("<h2>Картинка не найдена</h2>")
+
+
+def picture_edit(request, id):
+    form = SimpleAddPictureForm()
+    try:
+        photo = SimpleAddPicture.objects.get(id__iexact=id)
+
+        if request.method == "POST":
+            photo.title = request.POST.get("title")
+            photo.photo = request.FILES.get("photo")
+            # photo.photo = request.POST.get
+            photo.save()
+            return HttpResponseRedirect(reverse('photo_gallery'))
+        else:
+            return  render(request, 'image_app/picture_edit.html', {"photo": photo, "form": form})
+    except SimpleAddPicture.DoesNotExist:
+        return HttpResponseNotFound("<h2> Картинка не найдена </h2>")

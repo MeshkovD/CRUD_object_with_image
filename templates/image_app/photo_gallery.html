@@ -50,7 +50,7 @@
 
                     <tr>
                         <td>
-                            <p>Редактировать</p>
+                            <p><a href="{% url 'picture_edit' id=photo.id %}">Редактировать</a></p>
                             <p><a href="{% url 'picture_delete' id=photo.id %}">Удалить</a></p>
 
                         </td>
