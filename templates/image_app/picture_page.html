@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <p>{{ photo.title }}</p>
+    <p>
+    {% if photo.photo %}
+        <img src="{{ photo.photo.url }}" alt="Проблема с загрузкой изображения из базы данных" width="500">
+    {%else%}
+        <p> Изображение не загружено пользователем.</p>
+    {% endif %}
+    </p>
+    <p><a href="{% url 'picture_edit' id=photo.id %}">Редактировать</a></p>
+    <p><a href="{% url 'picture_delete' id=photo.id %}">Удалить</a></p>
+
+</body>
+</html>
