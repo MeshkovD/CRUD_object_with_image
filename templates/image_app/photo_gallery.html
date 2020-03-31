@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .block1 {
+            margin: 20px;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit"> Save </button>
+
+</form>
+
+ <div class="">
+    {% if photos.count > 0 %}
+        <h2>Список картинок</h2>
+
+            {% for photo in photos %}
+            <div class="block1">
+                <table border="1">
+                     <tr>
+                         <td><a href="{% url 'picture_page' id=photo.id %}">{{ photo.title }}</a></td>
+                        <td rowspan="2">
+                            <a href="#">
+                            {% if photo.photo %}
+                                <a href="{% url 'picture_page' id=photo.id %}">
+                                    <img src="{{ photo.photo.url }}" alt="Проблема с загрузкой изображения из базы данных" width="200">
+                                </a>
+                            {%else%}
+                                <p> Изображение не загружено пользователем.</p>
+                            {% endif %}
+                            </a>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <p><a href="{% url 'picture_edit' id=photo.id %}">Редактировать</a></p>
+                            <p><a href="{% url 'picture_delete' id=photo.id %}">Удалить</a></p>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            {% endfor %}
+
+
+
+    {% else %}
+        <h2>Не загружено ни одного изображения. <br> Загрузите первое! </h2>
+    {% endif %}
+    </div>
+
+</body>
+</html>

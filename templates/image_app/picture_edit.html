@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<form method="POST" enctype="multipart/form-data">
+
+{% csrf_token %}
+{{ form.as_p }}
+
+    <button type="submit">Сохранить изменения</button>
+
+</form>
+
+
+<div>
+    <h2>Текущие название и фото</h2>
+    <p>{{ photo.title }}</p>
+    <p>
+    {% if photo.photo %}
+        <img src="{{ photo.photo.url }}" alt="Проблема с загрузкой изображения из базы данных" width="100">
+    {%else%}
+        <p> Изображение не загружено пользователем.</p>
+    {% endif %}
+    </p>
+</div>
+</body>
+</html>
