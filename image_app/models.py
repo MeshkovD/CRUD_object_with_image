@@ -6,12 +6,3 @@ class SimpleAddPicture(models.Model):
 
     def __str__(self):
         return self.title
-
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.old_title = self.title
-    #
-    # def save(self, *args, **kwargs):
-    #     if self.old_title and not self.title:
-    #         self.paid_time = timezone.now()
-    #     return super().save(*args, **kwargs)

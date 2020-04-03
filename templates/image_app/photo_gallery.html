@@ -17,15 +17,6 @@
 <body>
 
 
-<form method="POST" enctype="multipart/form-data">
-
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button type="submit"> Save </button>
-
-</form>
-
  <div class="">
     {% if photos.count > 0 %}
         <h2>Список картинок</h2>
@@ -50,7 +41,7 @@
 
                     <tr>
                         <td>
-                            <p><a href="{% url 'picture_edit' id=photo.id %}">Редактировать</a></p>
+                            <p><a href="{% url 'picture_update' id=photo.id %}">Редактировать</a></p>
                             <p><a href="{% url 'picture_delete' id=photo.id %}">Удалить</a></p>
 
                         </td>
