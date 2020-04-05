@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import SimpleAddPicture
+from .models import SimpleAddPicture, Profile
 
-# admin.site.register(Image)
+
 admin.site.register(SimpleAddPicture)
+admin.site.register(Profile)

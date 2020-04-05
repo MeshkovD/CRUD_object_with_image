@@ -34,14 +34,13 @@ class PhotoGallery(ListView):
 
 class PicturePage(View):
     def get(self, request, id):
-        # photo = SimpleAddPicture.objects.get(id__iexact=id)
         photo = get_object_or_404(SimpleAddPicture, id__iexact=id)
         return render(request, "image_app/picture_page.html", {'photo': photo})
 
 
 class PictureUpdate(View):
     def get(self, request, id):
-        picture = SimpleAddPicture.objects.get(id__iexact=id)
+        picture = get_object_or_404(SimpleAddPicture, id__iexact=id)
         bound_form = SimpleAddPictureForm(instance=picture)
         return  render(request, 'image_app/picture_update.html', context={'form': bound_form, 'picture': picture})
 
@@ -56,7 +55,7 @@ class PictureUpdate(View):
 
 class PictureDelete(View):
     def get(self, request, id):
-        pict = SimpleAddPicture.objects.get(id__iexact=id)
+        pict = get_object_or_404(SimpleAddPicture, id__iexact=id)
         return render(request, 'image_app/photo_delete.html', context={'pict': pict})
 
     def post(self, request, id):
